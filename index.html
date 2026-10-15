@@ -1,0 +1,4087 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moni Books | Librería Cultural & Café Literario</title>
+  <meta name="description" content="Descubre Moni Books: tu librería cultural contemporánea. Selección curada de ficción, ensayo, poesía y encuentros con los autores más destacados.">
+
+  <!-- Favicon Oficial Moni Books -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Google Fonts: Roboto (Títulos) & Playfair Display (Textos editoriales y párrafos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES CSS - PALETA DE COLOR 60 - 30 - 10 Y TIPOGRAFÍA
+       ========================================================================== */
+    :root {
+      /* 60% Color Dominante (Azul profundo / petróleo) */
+      --color-primary: #086288;
+      --color-primary-dark: #054561;
+      --color-primary-deep: #032d3f;
+      --color-primary-light: #0d7ba9;
+      --color-primary-soft: rgba(8, 98, 136, 0.08);
+
+      /* 30% Color Secundario / Soporte (Rosa terracota / coral suave) */
+      --color-secondary: #DE7272;
+      --color-secondary-light: #f4b4b4;
+      --color-secondary-soft: #fcf1f1;
+      --color-secondary-dark: #b84c4c;
+      --color-secondary-surface: #faebeb;
+
+      /* 10% Color de Acento / CTA (Verde salvia / bosque) */
+      --color-accent: #5C7057;
+      --color-accent-hover: #495a45;
+      --color-accent-light: #7c9475;
+      --color-accent-soft: rgba(92, 112, 87, 0.15);
+
+      /* Neutros y legibilidad WCAG */
+      --color-white: #FFFFFF;
+      --color-cream: #FAF8F5;
+      --color-dark: #1E232A;
+      --color-text-body: #2B2F38;
+      --color-text-muted: #5A6270;
+      --color-border: rgba(255, 255, 255, 0.16);
+
+      /* Tipografías */
+      --font-heading: 'Roboto', sans-serif;
+      --font-body: 'Playfair Display', Georgia, serif;
+
+      /* Sombras y elevaciones */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 6px 18px rgba(3, 45, 63, 0.12);
+      --shadow-lg: 0 16px 36px rgba(3, 45, 63, 0.18);
+      --shadow-accent: 0 8px 24px rgba(92, 112, 87, 0.35);
+
+      /* Bordes y transiciones */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-body);
+      background-color: var(--color-primary-deep);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button, input {
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Badges & Pills */
+    .badge-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: var(--color-secondary);
+      color: #380C14;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    /* Botones CTA (Regla 10% Color de Acento #5C7057) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .btn-cta {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      box-shadow: var(--shadow-accent);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-cta:hover {
+      background-color: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(92, 112, 87, 0.45);
+    }
+
+    .btn-cta:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-white);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: var(--color-white);
+      transform: translateY(-2px);
+    }
+
+    /* Iconos SVG genéricos */
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      display: inline-block;
+      vertical-align: middle;
+      fill: currentColor;
+    }
+
+    /* ==========================================================================
+       3. HEADER & NAVBAR (60% Base #086288)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(8, 98, 136, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: var(--transition);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    /* Logo tipográfico */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--color-white);
+    }
+
+    .logo-symbol {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+      color: var(--color-white);
+    }
+
+    .logo-text span {
+      color: var(--color-secondary);
+      font-weight: 900;
+    }
+
+    /* Enlaces de Navegación */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.88);
+      position: relative;
+      padding: 0.4rem 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-secondary);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--color-white);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Barra de Búsqueda Rápida & Carrito */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 0.55rem 1rem 0.55rem 2.4rem;
+      border-radius: var(--radius-full);
+      color: var(--color-white);
+      font-size: 0.88rem;
+      width: 210px;
+      transition: var(--transition);
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.65);
+      font-family: var(--font-heading);
+    }
+
+    .search-input:focus {
+      background-color: rgba(255, 255, 255, 0.22);
+      border-color: var(--color-secondary);
+      width: 250px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+    }
+
+    .cart-btn {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cart-btn:hover {
+      background-color: var(--color-secondary);
+      color: #380C14;
+      transform: scale(1.05);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.72rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      border: 2px solid var(--color-primary);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      color: var(--color-white);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION (60% Base #086288 con toques cálidos)
+       ========================================================================== */
+    .hero-section {
+      background: radial-gradient(circle at 80% 20%, rgba(222, 114, 114, 0.15), transparent 45%),
+                  linear-gradient(175deg, #086288 0%, #064b68 65%, #04364c 100%);
+      color: var(--color-white);
+      padding: 5.5rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(222, 114, 114, 0.22) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge-wrap {
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.12;
+      margin-bottom: 1.35rem;
+      color: var(--color-white);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-title span {
+      color: var(--color-secondary);
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+      font-style: italic;
+      color: #E8F1F5;
+      margin-bottom: 2.2rem;
+      max-width: 580px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      margin-bottom: 2.8rem;
+    }
+
+    /* Estadísticas del Hero */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .stat-item h4 {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--color-secondary);
+      margin-bottom: 0.15rem;
+    }
+
+    .stat-item p {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0;
+      font-family: var(--font-heading);
+      font-weight: 500;
+    }
+
+    /* Imagen y Composición Visual Hero */
+    .hero-media {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image-frame {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+      border: 4px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.8s ease;
+    }
+
+    .hero-image-frame:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Tarjeta flotante interactiva de recomendación */
+    .floating-card {
+      position: absolute;
+      bottom: -24px;
+      left: -28px;
+      background-color: var(--color-white);
+      color: var(--color-dark);
+      padding: 1.15rem 1.4rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      max-width: 310px;
+      border-left: 5px solid var(--color-secondary);
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .floating-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--color-secondary-soft);
+      color: var(--color-secondary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .floating-card-text h5 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .floating-card-text p {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--color-text-muted);
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    /* ==========================================================================
+       5. FEATURE BAR (Beneficios y Confianza)
+       ========================================================================== */
+    .feature-bar {
+      background-color: var(--color-primary-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.6rem 0;
+      color: var(--color-white);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .feature-icon-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background-color: rgba(222, 114, 114, 0.18);
+      color: var(--color-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-info h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+      color: var(--color-white);
+    }
+
+    .feature-info p {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 0;
+      font-family: var(--font-heading);
+    }
+
+    /* ==========================================================================
+       6. SECCIÓN "LIBROS MÁS DESTACADOS" (30% Terracota #DE7272 en Cards)
+       ========================================================================== */
+    .books-section {
+      background: linear-gradient(180deg, #054561 0%, #086288 40%, #064b68 100%);
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-eyebrow {
+      color: var(--color-secondary);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.4vw, 2.85rem);
+      font-weight: 900;
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+    }
+
+    /* Filtros por Categoría */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.3rem;
+      border-radius: var(--radius-full);
+      background-color: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover {
+      background-color: rgba(222, 114, 114, 0.25);
+      color: var(--color-white);
+      border-color: var(--color-secondary);
+    }
+
+    .filter-btn.active {
+      background-color: var(--color-secondary);
+      color: #2F0B12;
+      border-color: var(--color-secondary);
+      box-shadow: 0 4px 14px rgba(222, 114, 114, 0.35);
+    }
+
+    /* Grid de Libros Destacados */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 2.2rem;
+    }
+
+    /* Tarjeta Contenedora de Libros (Uso del 30% #DE7272) */
+    .book-card {
+      background-color: var(--color-secondary);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      overflow: hidden;
+    }
+
+    .book-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      border-color: var(--color-white);
+    }
+
+    /* Cinta de Novedad / Más Vendido (10% Acento #5C7057) */
+    .book-badge-ribbon {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.4rem;
+      z-index: 5;
+    }
+
+    .book-cover-wrap {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      background-color: #260a0f;
+      height: 310px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+    }
+
+    .book-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .book-card:hover .book-cover-img {
+      transform: scale(1.04);
+    }
+
+    /* Acciones sobre la portada */
+    .book-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 98, 136, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .book-card:hover .book-cover-overlay {
+      opacity: 1;
+    }
+
+    .btn-quickview {
+      background-color: var(--color-white);
+      color: var(--color-primary-deep);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-quickview:hover {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    /* Contenido de la tarjeta */
+    .book-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      color: #24090E; /* Contraste WCAG óptimo sobre #DE7272 */
+    }
+
+    .book-category {
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #551620;
+      margin-bottom: 0.35rem;
+    }
+
+    .book-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #170407;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .book-author {
+      font-size: 0.98rem;
+      font-style: italic;
+      color: #380C14;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Calificación con estrellas */
+    .book-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .stars {
+      color: #5C7057; /* Verde salvia elegante o dorado de soporte */
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+
+    .rating-num {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.84rem;
+      color: #380C14;
+      margin-left: 0.2rem;
+    }
+
+    .rating-reviews {
+      font-size: 0.78rem;
+      color: #551620;
+      font-style: italic;
+    }
+
+    /* Precios y Botón de Compra */
+    .book-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(56, 12, 20, 0.18);
+    }
+
+    .price-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-original {
+      font-size: 0.8rem;
+      color: #551620;
+      text-decoration: line-through;
+      font-family: var(--font-heading);
+    }
+
+    .book-price {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: #170407;
+    }
+
+    /* Botón Acción Añadir Cesta (10% Acento #5C7057) */
+    .btn-add-cart {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.95rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(92, 112, 87, 0.35);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-add-cart:hover {
+      background-color: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(92, 112, 87, 0.5);
+    }
+
+    .btn-add-cart:active {
+      transform: scale(0.97);
+    }
+
+    /* ==========================================================================
+       7. SECCIÓN "ESCRITORES DE MODA" (Perfiles contemporáneos)
+       ========================================================================== */
+    .authors-section {
+      background-color: var(--color-primary);
+      padding: 6.5rem 0;
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .author-card {
+      background: rgba(222, 114, 114, 0.12);
+      border: 1px solid rgba(222, 114, 114, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      color: var(--color-white);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      backdrop-filter: blur(8px);
+    }
+
+    .author-card:hover {
+      transform: translateY(-6px);
+      background: rgba(222, 114, 114, 0.2);
+      border-color: var(--color-secondary);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .author-avatar-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.4rem;
+      position: relative;
+    }
+
+    .author-avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px dashed var(--color-secondary);
+      animation: rotateSlow 24s linear infinite;
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .author-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--color-white);
+      box-shadow: var(--shadow-md);
+    }
+
+    .author-tag {
+      margin-bottom: 0.6rem;
+    }
+
+    .author-name {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--color-white);
+      margin-bottom: 0.4rem;
+    }
+
+    .author-quote {
+      font-size: 0.96rem;
+      font-style: italic;
+      color: #F8DCDC;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+      position: relative;
+      padding: 0 0.5rem;
+    }
+
+    .author-quote::before {
+      content: '“';
+      font-family: var(--font-body);
+      font-size: 2.4rem;
+      color: var(--color-secondary);
+      line-height: 0;
+      position: relative;
+      top: 0.4rem;
+      margin-right: 0.15rem;
+    }
+
+    .author-quote::after {
+      content: '”';
+      font-family: var(--font-body);
+      font-size: 2.4rem;
+      color: var(--color-secondary);
+      line-height: 0;
+      position: relative;
+      top: 0.4rem;
+      margin-left: 0.15rem;
+    }
+
+    /* Última obra destacada */
+    .author-latest-work {
+      background: rgba(3, 45, 63, 0.55);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 1.25rem;
+    }
+
+    .work-icon {
+      color: var(--color-secondary);
+      flex-shrink: 0;
+    }
+
+    .work-details {
+      flex: 1;
+    }
+
+    .work-label {
+      font-size: 0.7rem;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-secondary);
+      font-weight: 700;
+    }
+
+    .work-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      color: var(--color-white);
+    }
+
+    .btn-author-explore {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: var(--transition);
+    }
+
+    .btn-author-explore:hover {
+      background-color: var(--color-accent-hover);
+      box-shadow: 0 4px 14px rgba(92, 112, 87, 0.4);
+    }
+
+    /* ==========================================================================
+       8. SECCIÓN LITERARIA & CLUB DEL LIBRO (Bloque con 30% #DE7272)
+       ========================================================================== */
+    .club-section {
+      background: linear-gradient(135deg, #054561 0%, #086288 100%);
+      padding: 5.5rem 0;
+      color: var(--color-white);
+    }
+
+    .club-banner {
+      background: linear-gradient(135deg, var(--color-secondary) 0%, #c95c5c 100%);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      color: #24090E;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .club-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 900;
+      color: #170407;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .club-text p {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #2F0B12;
+      margin-bottom: 1.8rem;
+    }
+
+    .club-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .club-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #24090E;
+    }
+
+    .club-check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    .club-interactive-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .club-interactive-card h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .club-interactive-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .club-form-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      margin-bottom: 0.8rem;
+      font-size: 0.92rem;
+      font-family: var(--font-heading);
+    }
+
+    .club-form-input:focus {
+      border-color: var(--color-primary);
+    }
+
+    /* ==========================================================================
+       9. PIE DE PÁGINA / FOOTER (60% Base #086288)
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--color-primary-deep);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--color-white);
+      padding: 5rem 0 2rem;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr 0.9fr 1.3fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 1.1rem;
+      margin-bottom: 1.5rem;
+      max-width: 320px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .social-btn:hover {
+      background-color: var(--color-secondary);
+      color: #380C14;
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 1.4rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 34px;
+      height: 2px;
+      background-color: var(--color-secondary);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.75);
+      font-family: var(--font-heading);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-secondary);
+      transform: translateX(4px);
+    }
+
+    /* Caja de Suscripción al Newsletter */
+    .newsletter-box p {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 1.1rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .newsletter-input-group {
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .newsletter-input-group:focus-within {
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 2px rgba(222, 114, 114, 0.3);
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 0.85rem 1.1rem;
+      background: none;
+      color: var(--color-white);
+      font-size: 0.9rem;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-heading);
+    }
+
+    .newsletter-submit {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: 0 1.25rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .newsletter-submit:hover {
+      background-color: var(--color-accent-hover);
+    }
+
+    .newsletter-note {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.55);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Footer Bottom / Legal & Créditos */
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .footer-bottom a {
+      color: var(--color-secondary);
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       10. MODAL DE VISTA RÁPIDA & NOTIFICACIONES TOAST
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(3, 45, 63, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .quickview-modal {
+      background-color: var(--color-white);
+      border-radius: var(--radius-lg);
+      max-width: 760px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal-backdrop.open .quickview-modal {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f3f5;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-white);
+    }
+
+    .modal-body {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .modal-image-wrap {
+      background: var(--color-primary-dark);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-image-wrap img {
+      max-height: 360px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .modal-details {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-badge {
+      margin-bottom: 0.6rem;
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .modal-author {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--color-secondary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .modal-synopsis {
+      font-size: 0.95rem;
+      color: var(--color-text-body);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-meta-row {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.84rem;
+      font-family: var(--font-heading);
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .modal-footer-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .modal-price {
+      font-size: 1.6rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .toast {
+      background-color: var(--color-primary-deep);
+      color: var(--color-white);
+      padding: 0.9rem 1.4rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      border-left: 5px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      transform: translateX(120%);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    .toast-icon {
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       10.1 PANEL LATERAL / DRAWER DEL CARRITO DE COMPRAS (Artículos & Cantidades)
+       ========================================================================== */
+    .cart-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(3, 45, 63, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 2500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+    }
+
+    .cart-drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 460px;
+      background-color: var(--color-white);
+      box-shadow: -10px 0 35px rgba(3, 45, 63, 0.35);
+      z-index: 2501;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cart-drawer-backdrop.open .cart-drawer {
+      transform: translateX(0);
+    }
+
+    /* Cabecera del Carrito (60% Azul petróleo #086288) */
+    .cart-header {
+      background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+      color: var(--color-white);
+      padding: 1.35rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(222, 114, 114, 0.4);
+    }
+
+    .cart-header-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cart-header-title h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--color-white);
+    }
+
+    .cart-header-count {
+      background-color: var(--color-secondary);
+      color: #24090E;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+    }
+
+    .cart-close-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--color-white);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .cart-close-btn:hover {
+      background-color: var(--color-secondary);
+      color: #24090E;
+      transform: rotate(90deg);
+    }
+
+    /* Cuerpo del Carrito */
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.4rem;
+      background-color: #FAF8F5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Estado Vacío */
+    .cart-empty-state {
+      margin: auto 0;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cart-empty-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background-color: var(--color-secondary-soft);
+      color: var(--color-secondary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 8px 20px rgba(222, 114, 114, 0.22);
+    }
+
+    .cart-empty-state h4 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.45rem;
+    }
+
+    .cart-empty-state p {
+      font-size: 0.98rem;
+      font-style: italic;
+      color: var(--color-text-muted);
+      max-width: 310px;
+      margin-bottom: 1.6rem;
+      line-height: 1.55;
+    }
+
+    /* Lista de Artículos */
+    .cart-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-item {
+      background-color: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #EBE4DD;
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 1.1rem;
+      align-items: center;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .cart-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-secondary);
+    }
+
+    .cart-item-thumb {
+      width: 68px;
+      height: 94px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      background-color: #260a0f;
+      flex-shrink: 0;
+    }
+
+    .cart-item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .cart-item-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--color-dark);
+      line-height: 1.3;
+      margin: 0;
+      padding-right: 1.8rem;
+    }
+
+    .cart-item-author {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--color-secondary-dark);
+      margin: 0;
+    }
+
+    .cart-item-pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-top: 0.15rem;
+    }
+
+    .cart-item-subtotal {
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: var(--color-primary-dark);
+      font-family: var(--font-heading);
+    }
+
+    .cart-item-unit-price {
+      font-size: 0.78rem;
+      color: #718096;
+      font-family: var(--font-heading);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.45rem;
+    }
+
+    /* Selector de Cantidad (Agregar y Quitar) */
+    .qty-selector {
+      display: inline-flex;
+      align-items: center;
+      background-color: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      border-radius: var(--radius-full);
+      padding: 0.15rem;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--color-white);
+      color: var(--color-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    .qty-btn.qty-remove:hover {
+      background-color: var(--color-secondary);
+      color: #24090E;
+    }
+
+    .qty-value {
+      min-width: 32px;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--color-dark);
+    }
+
+    /* Botón eliminar */
+    .cart-item-delete {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: none;
+      color: #A0AEC0;
+      cursor: pointer;
+      padding: 0.35rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .cart-item-delete:hover {
+      color: var(--color-secondary-dark);
+      background-color: var(--color-secondary-soft);
+    }
+
+    /* Pie del Carrito / Totales & Botón de Checkout */
+    .cart-footer {
+      background-color: var(--color-white);
+      border-top: 1px solid #E2E8F0;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .cart-shipping-notice {
+      background-color: rgba(92, 112, 87, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 0.55rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.92rem;
+      font-family: var(--font-heading);
+      color: var(--color-text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .cart-summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 0.65rem;
+      margin-top: 0.65rem;
+      border-top: 2px dashed #E2E8F0;
+      margin-bottom: 1.25rem;
+    }
+
+    .cart-total-label {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: var(--color-primary-dark);
+    }
+
+    .cart-total-val {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.55rem;
+      color: var(--color-primary);
+    }
+
+    .cart-checkout-btn {
+      width: 100%;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.95rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-accent);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 0.65rem;
+    }
+
+    .cart-checkout-btn:hover {
+      background-color: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(92, 112, 87, 0.45);
+    }
+
+    .cart-continue-btn {
+      width: 100%;
+      background: none;
+      color: var(--color-text-muted);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.4rem;
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .cart-continue-btn:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       10.2 BUSCADOR Y LOCALIZADOR DE LIBROS BAJO PEDIDO (RED EDITORIAL EXTERNA)
+       ========================================================================== */
+    .external-search-section {
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 2px dashed rgba(222, 114, 114, 0.4);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .external-banner {
+      background: linear-gradient(135deg, rgba(8, 98, 136, 0.95), rgba(5, 69, 97, 0.98));
+      border: 1.5px solid var(--color-secondary);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .external-banner-info {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .external-banner-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-secondary);
+      color: #24090E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(222, 114, 114, 0.4);
+    }
+
+    .external-banner-text h3 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--color-white);
+      margin-bottom: 0.25rem;
+    }
+
+    .external-banner-text p {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #F8DCDC;
+      margin: 0;
+    }
+
+    /* Buscador dedicado dentro de la sección */
+    .global-finder-section {
+      background: linear-gradient(180deg, #064b68 0%, #032d3f 100%);
+      padding: 5.5rem 0;
+      color: var(--color-white);
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .finder-box-wrap {
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid rgba(222, 114, 114, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 2.8rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .finder-search-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .finder-input {
+      flex: 1;
+      padding: 0.95rem 1.4rem;
+      border-radius: var(--radius-md);
+      background-color: var(--color-white);
+      color: var(--color-dark);
+      font-size: 1rem;
+      font-family: var(--font-heading);
+      border: 2px solid transparent;
+      transition: var(--transition);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .finder-input:focus {
+      border-color: var(--color-secondary);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(222, 114, 114, 0.25);
+    }
+
+    .finder-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      font-family: var(--font-heading);
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .finder-tag-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+
+    .finder-tag-btn:hover {
+      background-color: var(--color-secondary);
+      color: #24090E;
+      border-color: var(--color-secondary);
+    }
+
+    /* Spinner de carga */
+    .search-spinner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      color: var(--color-white);
+      gap: 1rem;
+    }
+
+    .spinner-ring {
+      width: 44px;
+      height: 44px;
+      border: 4px solid rgba(255, 255, 255, 0.15);
+      border-top-color: var(--color-secondary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Tarjetas de libros bajo pedido */
+    .external-books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .external-book-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      border: 2px solid rgba(222, 114, 114, 0.5);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .external-book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+      border-color: var(--color-secondary);
+    }
+
+    .external-book-thumb-wrap {
+      height: 260px;
+      background: #19090C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .external-book-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .external-book-card:hover .external-book-thumb {
+      transform: scale(1.05);
+    }
+
+    .external-book-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      background: #FFFFFF;
+      color: var(--color-dark);
+    }
+
+    .badge-ondemand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background-color: rgba(222, 114, 114, 0.18);
+      color: #9c2d2d;
+      border: 1px solid rgba(222, 114, 114, 0.4);
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.5rem;
+      align-self: flex-start;
+    }
+
+    .external-book-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .external-book-author {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--color-text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .external-book-meta {
+      font-size: 0.76rem;
+      font-family: var(--font-heading);
+      color: #718096;
+      margin-bottom: 1rem;
+    }
+
+    .external-book-footer {
+      margin-top: auto;
+      padding-top: 0.8rem;
+      border-top: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .external-book-price {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--color-primary);
+    }
+
+    .btn-order-book {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: 0.55rem 0.95rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(92, 112, 87, 0.3);
+    }
+
+    .btn-order-book:hover {
+      background-color: var(--color-accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Solicitud manual personalizada si no se encuentra */
+    .custom-request-box {
+      background: rgba(222, 114, 114, 0.12);
+      border: 1.5px solid var(--color-secondary);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      color: var(--color-white);
+      max-width: 650px;
+      margin: 2rem auto 0;
+    }
+
+    .custom-request-box h4 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+
+    .custom-request-box p {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: #F8DCDC;
+      margin-bottom: 1.25rem;
+    }
+
+    .custom-request-form {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .custom-request-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-family: var(--font-heading);
+    }
+
+    /* ==========================================================================
+       11. RESPONSIVE DESIGN (Mobile First & Breakpoints)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-stats {
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .hero-media {
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+      }
+
+      .club-banner {
+        grid-template-columns: 1fr;
+        padding: 2.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background-color: var(--color-primary-deep);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.4rem;
+        border-bottom: 2px solid var(--color-secondary);
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+      }
+
+      .search-box {
+        display: none; /* Oculta en móviles muy compactos para dar paso al botón */
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-section {
+        padding: 3.5rem 0 3.5rem;
+      }
+
+      .floating-card {
+        bottom: -15px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image-wrap {
+        padding: 1.5rem;
+      }
+
+      .modal-image-wrap img {
+        max-height: 220px;
+      }
+
+      .modal-details {
+        padding: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & BARRA DE NAVEGACIÓN (60% Base #086288)
+       ========================================================================== -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <!-- Logo Tipográfico -->
+      <a href="#hero" class="logo" aria-label="Moni Books - Ir a Inicio">
+        <div class="logo-symbol">
+          <!-- SVG Libro Abierto -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+        <div class="logo-text">Moni <span>Books</span></div>
+      </a>
+
+      <!-- Menú de Navegación -->
+      <nav aria-label="Navegación principal">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#hero" class="nav-link active">Inicio</a></li>
+          <li><a href="#destacados" class="nav-link">Catálogo</a></li>
+          <li><a href="#localizador" class="nav-link">Localizador Global</a></li>
+          <li><a href="#autores" class="nav-link">Autores</a></li>
+          <li><a href="#club" class="nav-link">Club Literario</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Barra de búsqueda rápida & Carrito de compras -->
+      <div class="header-actions">
+        <div class="search-box">
+          <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="liveSearchInput" class="search-input" placeholder="Buscar libro, autor..." aria-label="Buscar libros o autores">
+        </div>
+
+        <!-- Botón Carrito de Compras -->
+        <button class="cart-btn" id="cartToggleBtn" aria-label="Ver carrito de compras">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" id="cartCountBadge">0</span>
+        </button>
+
+        <!-- Botón Menú Móvil -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         SECCIÓN HERO (60% Azul petróleo #086288 + Acentos)
+         ========================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <!-- Contenido textual -->
+        <div class="hero-content">
+          <div class="hero-badge-wrap">
+            <span class="badge-accent">
+              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              Librería Cultural & Editorial Independiente
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            Historias que despiertan el alma y <span>encienden la mente.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Sumérgete en una cuidada selección editorial donde cada página es un refugio, cada autor una voz imprescindible y cada lectura un nuevo viaje inolvidable.
+          </p>
+
+          <div class="hero-actions">
+            <!-- CTA Principal con 10% Color de Acento #5C7057 -->
+            <a href="#destacados" class="btn btn-cta">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              Explorar Catálogo
+            </a>
+            <a href="#club" class="btn btn-outline">
+              Conocer Club Literario
+            </a>
+          </div>
+
+          <!-- Métricas de Confianza -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h4>+15.000</h4>
+              <p>Títulos curados</p>
+            </div>
+            <div class="stat-item">
+              <h4>4.9 / 5</h4>
+              <p>Valoración de lectores</p>
+            </div>
+            <div class="stat-item">
+              <h4>24 / 48h</h4>
+              <p>Envíos sostenibles</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Composición Visual Hero -->
+        <div class="hero-media">
+          <div class="hero-image-frame">
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1000&q=80" 
+                 alt="Rincón acogedor de la librería Moni Books con estanterías de madera repletas de libros" 
+                 loading="eager">
+          </div>
+
+          <!-- Tarjeta Flotante Destacada -->
+          <div class="floating-card">
+            <div class="floating-card-icon">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+            </div>
+            <div class="floating-card-text">
+              <h5>Libro del Mes</h5>
+              <p>“La sombra de lo invisible” de Clara Beltrán ya disponible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         BARRA DE VALOR / COMPROMISOS MONI BOOKS
+         ========================================================================== -->
+    <section class="feature-bar" aria-label="Compromisos y beneficios de Moni Books">
+      <div class="container features-grid">
+        <div class="feature-item">
+          <div class="feature-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <h4>Curaduría Artesanal</h4>
+            <p>Selección exhaustiva de títulos</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <h4>Envíos Ecológicos</h4>
+            <p>Empaque 100% reciclado y rápido</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <h4>Encuentros Literarios</h4>
+            <p>Charlas y firmas exclusivas</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="feature-info">
+            <h4>Asesoría Personal</h4>
+            <p>Libreros expertos a tu escucha</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN "LIBROS MÁS DESTACADOS" (30% Terracota #DE7272 en Tarjetas)
+         ========================================================================== -->
+    <section class="books-section" id="destacados">
+      <div class="container">
+        <!-- Encabezado de la sección -->
+        <div class="section-header">
+          <span class="section-eyebrow">Catálogo Recomendado</span>
+          <h2 class="section-title">Libros Más Destacados</h2>
+          <p class="section-desc">
+            Obras maestras, revelaciones líricas y ensayos transformadores seleccionados por nuestros libreros para encender tu imaginación.
+          </p>
+        </div>
+
+        <!-- Filtros de categoría -->
+        <div class="filter-tabs" id="filterTabs">
+          <button class="filter-btn active" data-category="all">Todos los Géneros</button>
+          <button class="filter-btn" data-category="ficcion">Ficción & Novela</button>
+          <button class="filter-btn" data-category="ensayo">Ensayo & Filosofía</button>
+          <button class="filter-btn" data-category="poesia">Poesía & Arte</button>
+          <button class="filter-btn" data-category="novedad">Novedades</button>
+        </div>
+
+        <!-- Cuadrícula de Libros Destacados -->
+        <div class="books-grid" id="booksGrid">
+          
+          <!-- Libro 1 -->
+          <article class="book-card" data-category="ficcion novedad">
+            <div class="book-badge-ribbon">
+              <span class="badge-accent">Novedad</span>
+            </div>
+            <div class="book-cover-wrap">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80" 
+                   alt="Portada del libro La Ciudad de los Ecos Invisibles" 
+                   class="book-cover-img"
+                   loading="lazy">
+              <div class="book-cover-overlay">
+                <button class="btn-quickview" onclick="openQuickView(0)">Vista Rápida</button>
+              </div>
+            </div>
+            <div class="book-info">
+              <span class="book-category">Ficción Contemporánea</span>
+              <h3 class="book-title">La Ciudad de los Ecos Invisibles</h3>
+              <p class="book-author">Por Mateo Silveira</p>
+              <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.9</span>
+                <span class="rating-reviews">(142 reseñas)</span>
+              </div>
+              <div class="book-footer">
+                <div class="price-wrap">
+                  <span class="price-original">22,50 €</span>
+                  <span class="book-price">19,90 €</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart('La Ciudad de los Ecos Invisibles', 19.90)">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 2 -->
+          <article class="book-card" data-category="ensayo">
+            <div class="book-badge-ribbon">
+              <span class="badge-accent">Bestseller</span>
+            </div>
+            <div class="book-cover-wrap">
+              <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" 
+                   alt="Portada del libro La Arquitectura del Silencio" 
+                   class="book-cover-img"
+                   loading="lazy">
+              <div class="book-cover-overlay">
+                <button class="btn-quickview" onclick="openQuickView(1)">Vista Rápida</button>
+              </div>
+            </div>
+            <div class="book-info">
+              <span class="book-category">Ensayo & Sociedad</span>
+              <h3 class="book-title">La Arquitectura del Silencio</h3>
+              <p class="book-author">Por Elena Ramos Valdés</p>
+              <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.8</span>
+                <span class="rating-reviews">(98 reseñas)</span>
+              </div>
+              <div class="book-footer">
+                <div class="price-wrap">
+                  <span class="book-price">21,00 €</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart('La Arquitectura del Silencio', 21.00)">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 3 -->
+          <article class="book-card" data-category="poesia">
+            <div class="book-badge-ribbon">
+              <span class="badge-secondary">Edición Especial</span>
+            </div>
+            <div class="book-cover-wrap">
+              <img src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=600&q=80" 
+                   alt="Portada del libro Cartografía de la Luz Herida" 
+                   class="book-cover-img"
+                   loading="lazy">
+              <div class="book-cover-overlay">
+                <button class="btn-quickview" onclick="openQuickView(2)">Vista Rápida</button>
+              </div>
+            </div>
+            <div class="book-info">
+              <span class="book-category">Poesía Contemporánea</span>
+              <h3 class="book-title">Cartografía de la Luz Herida</h3>
+              <p class="book-author">Por Sofía Navarro</p>
+              <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">5.0</span>
+                <span class="rating-reviews">(64 reseñas)</span>
+              </div>
+              <div class="book-footer">
+                <div class="price-wrap">
+                  <span class="price-original">18,00 €</span>
+                  <span class="book-price">16,50 €</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart('Cartografía de la Luz Herida', 16.50)">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 4 -->
+          <article class="book-card" data-category="ficcion">
+            <div class="book-badge-ribbon">
+              <span class="badge-accent">Imprescindible</span>
+            </div>
+            <div class="book-cover-wrap">
+              <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80" 
+                   alt="Portada del libro El Jardín de los Manuscritos" 
+                   class="book-cover-img"
+                   loading="lazy">
+              <div class="book-cover-overlay">
+                <button class="btn-quickview" onclick="openQuickView(3)">Vista Rápida</button>
+              </div>
+            </div>
+            <div class="book-info">
+              <span class="book-category">Novela Histórica</span>
+              <h3 class="book-title">El Jardín de los Manuscritos</h3>
+              <p class="book-author">Por Lucas V. Menéndez</p>
+              <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.7</span>
+                <span class="rating-reviews">(182 reseñas)</span>
+              </div>
+              <div class="book-footer">
+                <div class="price-wrap">
+                  <span class="book-price">23,90 €</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart('El Jardín de los Manuscritos', 23.90)">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 5 -->
+          <article class="book-card" data-category="ensayo novedad">
+            <div class="book-badge-ribbon">
+              <span class="badge-accent">Novedad</span>
+            </div>
+            <div class="book-cover-wrap">
+              <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80" 
+                   alt="Portada del libro El Tiempo del Asombro" 
+                   class="book-cover-img"
+                   loading="lazy">
+              <div class="book-cover-overlay">
+                <button class="btn-quickview" onclick="openQuickView(4)">Vista Rápida</button>
+              </div>
+            </div>
+            <div class="book-info">
+              <span class="book-category">Filosofía & Naturaleza</span>
+              <h3 class="book-title">El Tiempo del Asombro</h3>
+              <p class="book-author">Por Diana C. Morales</p>
+              <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.9</span>
+                <span class="rating-reviews">(76 reseñas)</span>
+              </div>
+              <div class="book-footer">
+                <div class="price-wrap">
+                  <span class="price-original">21,00 €</span>
+                  <span class="book-price">18,50 €</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart('El Tiempo del Asombro', 18.50)">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 6 -->
+          <article class="book-card" data-category="ficcion">
+            <div class="book-badge-ribbon">
+              <span class="badge-secondary">Club Literario</span>
+            </div>
+            <div class="book-cover-wrap">
+              <img src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=600&q=80" 
+                   alt="Portada del libro Mareas de Medianoche" 
+                   class="book-cover-img"
+                   loading="lazy">
+              <div class="book-cover-overlay">
+                <button class="btn-quickview" onclick="openQuickView(5)">Vista Rápida</button>
+              </div>
+            </div>
+            <div class="book-info">
+              <span class="book-category">Realismo Mágico</span>
+              <h3 class="book-title">Mareas de Medianoche</h3>
+              <p class="book-author">Por Clara Beltrán</p>
+              <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.9</span>
+                <span class="rating-reviews">(210 reseñas)</span>
+              </div>
+              <div class="book-footer">
+                <div class="price-wrap">
+                  <span class="book-price">20,50 €</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart('Mareas de Medianoche', 20.50)">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Contenedor Dinámico para Libros encontrados fuera de stock / Red Editorial -->
+        <div id="externalSearchResults" class="external-search-section" style="display: none;">
+          <div class="external-banner">
+            <div class="external-banner-info">
+              <div class="external-banner-icon">
+                <svg style="width: 28px; height: 28px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <div class="external-banner-text">
+                <h3>Libro localizado en la Red Editorial Global</h3>
+                <p id="externalBannerDesc">No se encuentra en el stock físico de la librería, pero está disponible para encargo con entrega en 24/48h.</p>
+              </div>
+            </div>
+            <button class="btn btn-outline" onclick="clearExternalSearch()" style="padding: 0.55rem 1.1rem; font-size: 0.85rem;">
+              ✕ Restaurar catálogo
+            </button>
+          </div>
+
+          <div id="externalBooksGrid" class="external-books-grid">
+            <!-- Libros encontrados fuera de la librería renderizados dinámicamente -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN "LOCALIZADOR EDITORIAL GLOBAL" (Búsqueda de libros fuera de catálogo)
+         ========================================================================== -->
+    <section class="global-finder-section" id="localizador">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 2.5rem;">
+          <span class="section-eyebrow">Servicio Especial de Búsqueda</span>
+          <h2 class="section-title">Localizador de Libros en Red Editorial</h2>
+          <p class="section-desc">
+            ¿Buscas un libro que no está en nuestras estanterías? Conectamos con más de 200 distribuidoras y editoriales internacionales para encontrar cualquier obra publicada y enviártela.
+          </p>
+        </div>
+
+        <div class="finder-box-wrap">
+          <form class="finder-search-bar" onsubmit="handleDedicatedFinderSubmit(event)">
+            <input type="text" id="dedicatedFinderInput" class="finder-input" placeholder="Escribe cualquier título, autor o temática (ej. 'Cien años de soledad', 'Dune', '1984')..." required aria-label="Título o autor del libro a localizar">
+            <button type="submit" class="btn btn-cta" style="padding: 0.95rem 1.6rem;">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              Localizar Libro
+            </button>
+          </form>
+
+          <div class="finder-tags">
+            <span>Búsquedas populares bajo pedido:</span>
+            <button type="button" class="finder-tag-btn" onclick="quickFinderSearch('Cien años de soledad')">Cien años de soledad</button>
+            <button type="button" class="finder-tag-btn" onclick="quickFinderSearch('Dune Frank Herbert')">Dune</button>
+            <button type="button" class="finder-tag-btn" onclick="quickFinderSearch('El Principito')">El Principito</button>
+            <button type="button" class="finder-tag-btn" onclick="quickFinderSearch('1984 George Orwell')">1984</button>
+            <button type="button" class="finder-tag-btn" onclick="quickFinderSearch('Rayuela Julio Cortázar')">Rayuela</button>
+            <button type="button" class="finder-tag-btn" onclick="quickFinderSearch('Sapiens Yuval Noah')">Sapiens</button>
+          </div>
+
+          <!-- Contenedor dinámico de resultados del localizador dedicado -->
+          <div id="dedicatedFinderResults" style="margin-top: 1.5rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN "ESCRITORES DE MODA" (Voces contemporáneas)
+         ========================================================================== -->
+    <section class="authors-section" id="autores">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Voces Contemporáneas</span>
+          <h2 class="section-title">Escritores de Moda</h2>
+          <p class="section-desc">
+            Conoce a las plumas más influyentes y leídas del panorama actual. Creadores de mundos que dialogan con el presente.
+          </p>
+        </div>
+
+        <div class="authors-grid">
+          <!-- Autor 1 -->
+          <article class="author-card">
+            <div class="author-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+                   alt="Retrato editorial de la autora Clara Beltrán" 
+                   class="author-avatar"
+                   loading="lazy">
+            </div>
+            <div class="author-tag">
+              <span class="badge-secondary">Ficción Lírica</span>
+            </div>
+            <h3 class="author-name">Clara Beltrán</h3>
+            <p class="author-quote">
+              Escribir no es inventar mundos, sino tener la valentía de encender una lámpara en los rincones olvidados del alma.
+            </p>
+            <div class="author-latest-work">
+              <div class="work-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="work-details">
+                <span class="work-label">Última obra:</span>
+                <p class="work-title">Mareas de Medianoche (2026)</p>
+              </div>
+            </div>
+            <a href="#destacados" class="btn-author-explore">
+              Ver sus libros
+              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Autor 2 -->
+          <article class="author-card">
+            <div class="author-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" 
+                   alt="Retrato editorial del autor Mateo Silveira" 
+                   class="author-avatar"
+                   loading="lazy">
+            </div>
+            <div class="author-tag">
+              <span class="badge-secondary">Narrativa Urbana</span>
+            </div>
+            <h3 class="author-name">Mateo Silveira</h3>
+            <p class="author-quote">
+              Las ciudades respiran por sus libros; quien lee una historia camina el doble de vidas y comprende el doble de silencios.
+            </p>
+            <div class="author-latest-work">
+              <div class="work-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="work-details">
+                <span class="work-label">Última obra:</span>
+                <p class="work-title">La Ciudad de los Ecos Invisibles</p>
+              </div>
+            </div>
+            <a href="#destacados" class="btn-author-explore">
+              Ver sus libros
+              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Autor 3 -->
+          <article class="author-card">
+            <div class="author-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" 
+                   alt="Retrato editorial de la autora Elena Ramos Valdés" 
+                   class="author-avatar"
+                   loading="lazy">
+            </div>
+            <div class="author-tag">
+              <span class="badge-secondary">Ensayo Crítico</span>
+            </div>
+            <h3 class="author-name">Elena Ramos Valdés</h3>
+            <p class="author-quote">
+              En un tiempo de ruidos ensordecedores, el libro es el único templo donde la pausa se transforma en conocimiento genuino.
+            </p>
+            <div class="author-latest-work">
+              <div class="work-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="work-details">
+                <span class="work-label">Última obra:</span>
+                <p class="work-title">La Arquitectura del Silencio</p>
+              </div>
+            </div>
+            <a href="#destacados" class="btn-author-explore">
+              Ver sus libros
+              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Autor 4 -->
+          <article class="author-card">
+            <div class="author-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" 
+                   alt="Retrato editorial del autor Lucas V. Menéndez" 
+                   class="author-avatar"
+                   loading="lazy">
+            </div>
+            <div class="author-tag">
+              <span class="badge-secondary">Novela & Misterio</span>
+            </div>
+            <h3 class="author-name">Lucas V. Menéndez</h3>
+            <p class="author-quote">
+              Un manuscrito nunca muere; solo aguarda en una estantería al lector exacto que le devuelva el aliento y la verdad.
+            </p>
+            <div class="author-latest-work">
+              <div class="work-icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="work-details">
+                <span class="work-label">Última obra:</span>
+                <p class="work-title">El Jardín de los Manuscritos</p>
+              </div>
+            </div>
+            <a href="#destacados" class="btn-author-explore">
+              Ver sus libros
+              <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN CLUB LITERARIO (Bloque Terracota 30% #DE7272)
+         ========================================================================== -->
+    <section class="club-section" id="club">
+      <div class="container">
+        <div class="club-banner">
+          <div class="club-text">
+            <span class="badge-accent" style="margin-bottom: 1.1rem;">Comunidad Exclusiva</span>
+            <h2>Únete al Club de Lectores Moni Books</h2>
+            <p>
+              Recibe cada mes una caja literaria con un libro sorpresa de edición especial, guía de lectura analítica, marcapáginas de autor y acceso a encuentros virtuales mensuales con los autores.
+            </p>
+            <div class="club-features">
+              <div class="club-feature-item">
+                <div class="club-check-icon">✓</div>
+                <span>1 Libro sorpresa en tapa dura o edición conmemorativa</span>
+              </div>
+              <div class="club-feature-item">
+                <div class="club-check-icon">✓</div>
+                <span>Café literario mensual y debate en streaming privado</span>
+              </div>
+              <div class="club-feature-item">
+                <div class="club-check-icon">✓</div>
+                <span>15% de descuento permanente en toda la librería</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Inscripción Rápida -->
+          <div class="club-interactive-card">
+            <h3>Suscripción Mensual</h3>
+            <p>Sin permanencia. Cancela cuando quieras con un solo clic.</p>
+            <form id="clubForm" onsubmit="handleClubSubscribe(event)">
+              <input type="text" class="club-form-input" placeholder="Tu nombre completo" required>
+              <input type="email" class="club-form-input" placeholder="Tu correo electrónico" required>
+              <!-- Botón CTA con 10% Color de Acento #5C7057 -->
+              <button type="submit" class="btn btn-cta" style="width: 100%; margin-top: 0.5rem;">
+                Unirme por 19,90 € / mes
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       PIE DE PÁGINA (60% Azul petróleo #086288)
+       ========================================================================== -->
+  <footer class="site-footer" id="contacto">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Columna Marca -->
+        <div class="footer-brand">
+          <a href="#hero" class="logo" style="margin-bottom: 1rem;">
+            <div class="logo-symbol">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div class="logo-text">Moni <span>Books</span></div>
+          </a>
+          <p>
+            Librería independiente comprometida con la divulgación cultural, el placer de la lectura y el diálogo entre autores y lectores contemporáneos.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram de Moni Books">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter X de Moni Books">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Goodreads de Moni Books">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Spotify Podcast literario de Moni Books">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 11.5c3.5-1 6.5-.5 9 1"></path>
+                <path d="M7 14.5c4.5-1 8-.5 11 1"></path>
+                <path d="M9 8.5c3-1 5.5-.5 8 1"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna Enlaces de Exploración -->
+        <div class="footer-col">
+          <h4>Explorar</h4>
+          <ul class="footer-links">
+            <li><a href="#destacados">Novedades Editoriales</a></li>
+            <li><a href="#destacados">Libros Más Vendidos</a></li>
+            <li><a href="#autores">Entrevistas a Autores</a></li>
+            <li><a href="#club">Cajas Literarias Mensuales</a></li>
+            <li><a href="#">Tarjetas de Regalo</a></li>
+            <li><a href="#">Café & Espacio Cultural</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna Información y Legal -->
+        <div class="footer-col">
+          <h4>Atención al Lector</h4>
+          <ul class="footer-links">
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="#">Envíos y Devoluciones</a></li>
+            <li><a href="#">Políticas de Privacidad</a></li>
+            <li><a href="#">Aviso Legal y Cookies</a></li>
+            <li><a href="#">Condiciones de Venta</a></li>
+            <li><a href="#">Contacto y Ubicación</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna Newsletter -->
+        <div class="footer-col newsletter-box">
+          <h4>Gaceta Literaria</h4>
+          <p>
+            Recibe cada viernes recomendaciones inéditas, fragmentos exclusivos y entradas preferentes para firmas de libros.
+          </p>
+          <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletter(event)">
+            <div class="newsletter-input-group">
+              <input type="email" class="newsletter-input" placeholder="tu-correo@ejemplo.com" required aria-label="Correo para newsletter">
+              <!-- Botón CTA con 10% Color de Acento #5C7057 -->
+              <button type="submit" class="newsletter-submit" aria-label="Suscribirse al boletín">
+                <span>Suscribirse</span>
+              </button>
+            </div>
+            <p class="newsletter-note">Sin spam. Desuscríbete con un clic en cualquier momento.</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Barra de Créditos & Copyright -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>Moni Books S.L.</strong> Todos los derechos reservados.
+        </div>
+        <div>
+          Diseñado con pasión editorial &bull; Paleta 60-30-10 &bull; <a href="#hero">Volver al inicio ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL DE VISTA RÁPIDA (Quick View)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="quickViewModal" onclick="closeQuickViewOnBackdrop(event)">
+    <div class="quickview-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close-btn" onclick="closeQuickView()" aria-label="Cerrar ventana emergente">✕</button>
+      <div class="modal-body">
+        <div class="modal-image-wrap">
+          <img id="modalCover" src="" alt="Portada del libro seleccionado">
+        </div>
+        <div class="modal-details">
+          <div class="modal-badge">
+            <span class="badge-secondary" id="modalCategory">Ficción</span>
+          </div>
+          <h3 class="modal-title" id="modalTitle">Título del Libro</h3>
+          <p class="modal-author" id="modalAuthor">Por Autor</p>
+          <div class="book-rating" style="margin-bottom: 1rem;">
+            <span class="stars">★★★★★</span>
+            <span class="rating-num" id="modalRating">4.9 / 5</span>
+          </div>
+          <p class="modal-synopsis" id="modalSynopsis">
+            Sinopsis completa del libro seleccionado que detalla la trama cautivadora y los temas universales que explora la obra.
+          </p>
+          <div class="modal-meta-row">
+            <div><strong>Páginas:</strong> <span id="modalPages">384</span></div>
+            <div><strong>Idioma:</strong> Español</div>
+            <div><strong>Editorial:</strong> Moni Ediciones</div>
+          </div>
+          <div class="modal-footer-action">
+            <span class="modal-price" id="modalPrice">19,90 €</span>
+            <button class="btn btn-cta" id="modalAddCartBtn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Añadir a la cesta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       DRAWER LATERAL DE CARRITO DE COMPRAS (Ver, Agregar y Quitar Artículos)
+       ========================================================================== -->
+  <div class="cart-drawer-backdrop" id="cartDrawerBackdrop" onclick="handleCartBackdropClick(event)">
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Cesta de compras de Moni Books" role="dialog" aria-modal="true">
+      <!-- Cabecera del Carrito -->
+      <div class="cart-header">
+        <div class="cart-header-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <h3>Tu Cesta de Libros</h3>
+          <span class="cart-header-count" id="cartHeaderCount">0 artículos</span>
+        </div>
+        <button class="cart-close-btn" onclick="closeCart()" aria-label="Cerrar cesta de compras">✕</button>
+      </div>
+
+      <!-- Contenedor Dinámico de Artículos -->
+      <div class="cart-body" id="cartBody">
+        <!-- Renderizado dinámicamente con JavaScript -->
+      </div>
+
+      <!-- Pie del Carrito / Resumen Económico & Checkout -->
+      <div class="cart-footer" id="cartFooter">
+        <div class="cart-shipping-notice">
+          <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>¡Envío ecológico 24/48h gratuito incluido!</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Subtotal artículos:</span>
+          <span id="cartSubtotalAmount">0,00 €</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Gastos de envío:</span>
+          <span style="color: var(--color-accent); font-weight: 700;">Gratis</span>
+        </div>
+        <div class="cart-summary-total">
+          <span class="cart-total-label">Total del Pedido:</span>
+          <span class="cart-total-val" id="cartTotalAmount">0,00 €</span>
+        </div>
+        <button class="cart-checkout-btn" onclick="handleCheckout()">
+          <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Tramitar Compra
+        </button>
+        <button class="cart-continue-btn" onclick="closeCart()">
+          ← Seguir explorando lecturas
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Contenedor de Alertas Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       SCRIPTS INTERACTIVOS (Búsqueda, Filtro, Carrito, Modal, Notificaciones)
+       ========================================================================== -->
+  <script>
+    // Datos de libros para la vista rápida
+    const booksData = [
+      {
+        title: "La Ciudad de los Ecos Invisibles",
+        author: "Mateo Silveira",
+        category: "Ficción Contemporánea",
+        price: "19,90 €",
+        rawPrice: 19.90,
+        rating: "4.9 / 5 (142 reseñas)",
+        pages: "416 págs.",
+        synopsis: "En una metrópoli donde los recuerdos quedan impregnados en las paredes de los edificios centenarios, un archivero solitario descubre una melodía capaz de reconstruir los sucesos de una noche que la ciudad juró borrar para siempre.",
+        cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "La Arquitectura del Silencio",
+        author: "Elena Ramos Valdés",
+        category: "Ensayo & Sociedad",
+        price: "21,00 €",
+        rawPrice: 21.00,
+        rating: "4.8 / 5 (98 reseñas)",
+        pages: "320 págs.",
+        synopsis: "Un brillante y lúcido ensayo sobre la imperiosa necesidad de rescatar espacios de contemplación en la era de los algoritmos y la sobreestimulación constante. Una oda al pensamiento reflexivo y la calma.",
+        cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Cartografía de la Luz Herida",
+        author: "Sofía Navarro",
+        category: "Poesía Contemporánea",
+        price: "16,50 €",
+        rawPrice: 16.50,
+        rating: "5.0 / 5 (64 reseñas)",
+        pages: "160 págs.",
+        synopsis: "Un poemario conmovedor que transita por la pérdida, la memoria sensorial y el renacer de la esperanza. Versos afilados y luminosos que han colocado a Navarro en la primera línea de la poesía hispánica actual.",
+        cover: "https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "El Jardín de los Manuscritos",
+        author: "Lucas V. Menéndez",
+        category: "Novela Histórica",
+        price: "23,90 €",
+        rawPrice: 23.90,
+        rating: "4.7 / 5 (182 reseñas)",
+        pages: "544 págs.",
+        synopsis: "Toledo, siglo XVI. Un erudito judío y un encuadernador flamenco protegen una biblioteca clandestina con tratados prohibidos que amenazan las verdades absolutas del viejo continente. Intriga y pasión libresca.",
+        cover: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "El Tiempo del Asombro",
+        author: "Diana C. Morales",
+        category: "Filosofía & Naturaleza",
+        price: "18,50 €",
+        rawPrice: 18.50,
+        rating: "4.9 / 5 (76 reseñas)",
+        pages: "288 págs.",
+        synopsis: "Una expedición lírica y científica a través de los bosques boreales y costas salvajes para reaprender a mirar el mundo natural con los ojos fascinados de nuestra infancia.",
+        cover: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        title: "Mareas de Medianoche",
+        author: "Clara Beltrán",
+        category: "Realismo Mágico",
+        price: "20,50 €",
+        rawPrice: 20.50,
+        rating: "4.9 / 5 (210 reseñas)",
+        pages: "392 págs.",
+        synopsis: "En un pueblo costero azotado por mareas inexplicables que devuelven a la arena cartas escritas hace décadas, tres generaciones de mujeres desentrañan una herencia mágica y un amor inmortal.",
+        cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    // ==========================================================================
+    // ESTADO Y LÓGICA DEL CARRITO DE COMPRAS (Ver, Agregar y Quitar Artículos)
+    // ==========================================================================
+    let cart = [];
+
+    // Añadir artículo al carrito (por índice o por objeto/título)
+    function addToCart(bookInput, optionalPrice) {
+      let book;
+      if (typeof bookInput === 'number') {
+        book = booksData[bookInput];
+      } else if (typeof bookInput === 'string') {
+        book = booksData.find(b => b.title.toLowerCase() === bookInput.toLowerCase());
+        if (!book) {
+          book = {
+            title: bookInput,
+            rawPrice: optionalPrice || 19.90,
+            price: (optionalPrice || 19.90).toFixed(2).replace('.', ',') + ' €',
+            author: 'Autor Moni Books',
+            cover: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80'
+          };
+        }
+      }
+
+      if (!book) return;
+
+      const existingIndex = cart.findIndex(item => item.title === book.title);
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity += 1;
+      } else {
+        cart.push({
+          title: book.title,
+          author: book.author,
+          price: book.rawPrice,
+          cover: book.cover,
+          quantity: 1
+        });
+      }
+
+      updateCartBadge();
+      showToast(`¡"${book.title}" añadido a tu cesta!`);
+
+      // Si el carrito está actualmente abierto, refrescar lista al instante
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      if (backdrop && backdrop.classList.contains('open')) {
+        renderCart();
+      }
+    }
+
+    // Modificar cantidad (+1 o -1)
+    function changeQuantity(index, delta) {
+      if (!cart[index]) return;
+      
+      cart[index].quantity += delta;
+      
+      if (cart[index].quantity <= 0) {
+        const removedTitle = cart[index].title;
+        cart.splice(index, 1);
+        showToast(`"${removedTitle}" eliminado de tu cesta.`);
+      }
+
+      updateCartBadge();
+      renderCart();
+    }
+
+    // Eliminar artículo directamente
+    function removeFromCart(index) {
+      if (!cart[index]) return;
+      const removedTitle = cart[index].title;
+      cart.splice(index, 1);
+      showToast(`"${removedTitle}" eliminado de tu cesta.`);
+      updateCartBadge();
+      renderCart();
+    }
+
+    // Actualizar la insignia y contadores del carrito
+    function updateCartBadge() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartBadge = document.getElementById('cartCountBadge');
+      const headerCount = document.getElementById('cartHeaderCount');
+      
+      if (cartBadge) {
+        cartBadge.textContent = totalCount;
+        cartBadge.style.transform = 'scale(1.35)';
+        setTimeout(() => {
+          cartBadge.style.transform = 'scale(1)';
+        }, 220);
+      }
+      if (headerCount) {
+        headerCount.textContent = `${totalCount} ${totalCount === 1 ? 'artículo' : 'artículos'}`;
+      }
+    }
+
+    // Renderizar los artículos dentro del drawer del carrito
+    function renderCart() {
+      const cartBody = document.getElementById('cartBody');
+      const cartFooter = document.getElementById('cartFooter');
+      const subtotalEl = document.getElementById('cartSubtotalAmount');
+      const totalEl = document.getElementById('cartTotalAmount');
+
+      if (!cartBody) return;
+
+      if (cart.length === 0) {
+        cartFooter.style.display = 'none';
+        cartBody.innerHTML = `
+          <div class="cart-empty-state">
+            <div class="cart-empty-icon">
+              <svg style="width: 38px; height: 38px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <h4>Tu cesta está vacía</h4>
+            <p>Aún no has añadido historias a tu biblioteca. Explora nuestras recomendaciones editoriales.</p>
+            <button class="btn btn-cta" onclick="closeCart(); location.href='#destacados';">
+              Descubrir Libros Destacados
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      // Si contiene libros
+      cartFooter.style.display = 'block';
+
+      let subtotal = 0;
+      let html = '<div class="cart-items-list">';
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        html += `
+          <div class="cart-item">
+            <div class="cart-item-thumb">
+              <img src="${item.cover}" alt="${item.title}">
+            </div>
+            <div class="cart-item-content">
+              <h4 class="cart-item-title">${item.title}</h4>
+              <p class="cart-item-author">${item.author}</p>
+              
+              <div class="cart-item-pricing">
+                <span class="cart-item-subtotal">${itemTotal.toFixed(2).replace('.', ',')} €</span>
+                <span class="cart-item-unit-price">(${item.price.toFixed(2).replace('.', ',')} € / ud.)</span>
+              </div>
+
+              <div class="cart-item-controls">
+                <div class="qty-selector">
+                  <button class="qty-btn ${item.quantity === 1 ? 'qty-remove' : ''}" 
+                          onclick="changeQuantity(${index}, -1)" 
+                          aria-label="Restar una unidad" 
+                          title="${item.quantity === 1 ? 'Eliminar del carrito' : 'Reducir cantidad'}">
+                    ${item.quantity === 1 ? '🗑' : '−'}
+                  </button>
+                  <span class="qty-value">${item.quantity}</span>
+                  <button class="qty-btn" 
+                          onclick="changeQuantity(${index}, 1)" 
+                          aria-label="Añadir una unidad" 
+                          title="Aumentar cantidad">+</button>
+                </div>
+
+                <button class="cart-item-delete" onclick="removeFromCart(${index})" title="Eliminar artículo" aria-label="Eliminar ${item.title}">
+                  <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      html += '</div>';
+      cartBody.innerHTML = html;
+
+      const formattedSubtotal = subtotal.toFixed(2).replace('.', ',') + ' €';
+      subtotalEl.textContent = formattedSubtotal;
+      totalEl.textContent = formattedSubtotal;
+    }
+
+    // Abrir y cerrar el drawer del carrito
+    function openCart() {
+      renderCart();
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleCartBackdropClick(event) {
+      if (event.target === document.getElementById('cartDrawerBackdrop')) {
+        closeCart();
+      }
+    }
+
+    function handleCheckout() {
+      if (cart.length === 0) return;
+      showToast("¡Pedido tramitado con éxito! Gracias por tu compra en Moni Books.");
+      cart = [];
+      updateCartBadge();
+      renderCart();
+      setTimeout(() => {
+        closeCart();
+      }, 1200);
+    }
+
+    // Sistema de notificaciones Toast
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <svg class="icon toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      // Entrada suave
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 50);
+
+      // Desaparición automática
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+
+    // Manejo del carrito al hacer click en el botón del header
+    document.getElementById('cartToggleBtn').addEventListener('click', openCart);
+
+    // Menú móvil
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Filtros de categoría en los libros
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const bookCards = document.querySelectorAll('.book-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const category = button.getAttribute('data-category');
+
+        bookCards.forEach(card => {
+          const cardCategories = card.getAttribute('data-category');
+          if (category === 'all' || cardCategories.includes(category)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ==========================================================================
+    // SISTEMA DE BÚSQUEDA Y LOCALIZACIÓN EN RED EDITORIAL EXTERNA (Open Library API)
+    // ==========================================================================
+    let searchDebounceTimer = null;
+
+    // Búsqueda en tiempo real (Live Search en Cabecera)
+    const searchInput = document.getElementById('liveSearchInput');
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const externalContainer = document.getElementById('externalSearchResults');
+      clearTimeout(searchDebounceTimer);
+
+      if (!query) {
+        bookCards.forEach(card => card.style.display = 'flex');
+        if (externalContainer) externalContainer.style.display = 'none';
+        return;
+      }
+
+      let localMatches = 0;
+      bookCards.forEach(card => {
+        const title = card.querySelector('.book-title').textContent.toLowerCase();
+        const author = card.querySelector('.book-author').textContent.toLowerCase();
+        const category = card.querySelector('.book-category').textContent.toLowerCase();
+
+        if (title.includes(query) || author.includes(query) || category.includes(query)) {
+          card.style.display = 'flex';
+          localMatches++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Si NO hay libros en la librería local y la consulta tiene al menos 3 caracteres:
+      if (localMatches === 0 && query.length >= 3) {
+        searchDebounceTimer = setTimeout(() => {
+          searchExternalBooks(query, 'header');
+        }, 500);
+      } else {
+        if (externalContainer) externalContainer.style.display = 'none';
+      }
+    });
+
+    // Función para buscar en la Red Editorial Externa
+    async function searchExternalBooks(query, origin) {
+      const externalContainer = document.getElementById('externalSearchResults');
+      const grid = document.getElementById('externalBooksGrid');
+      const desc = document.getElementById('externalBannerDesc');
+
+      if (!externalContainer || !grid) return;
+
+      externalContainer.style.display = 'block';
+      if (desc) {
+        desc.textContent = `Buscando libros que coincidan con "${query}" en el catálogo editorial global de Moni Books...`;
+      }
+
+      grid.innerHTML = `
+        <div class="search-spinner" style="grid-column: 1 / -1;">
+          <div class="spinner-ring"></div>
+          <p>Consultando catálogo editorial global para "<strong>${escapeHtml(query)}</strong>"...</p>
+        </div>
+      `;
+
+      if (origin === 'header') {
+        externalContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6500);
+
+        const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=6`, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (!response.ok) throw new Error('Error al conectar con la red editorial');
+
+        const data = await response.json();
+        renderExternalResults(data.docs, query, grid, desc);
+      } catch (err) {
+        renderExternalFallback(query, grid, desc);
+      }
+    }
+
+    // Renderizar resultados encontrados fuera de la librería
+    function renderExternalResults(docs, query, gridEl, descEl) {
+      if (!docs || docs.length === 0) {
+        renderExternalFallback(query, gridEl, descEl);
+        return;
+      }
+
+      if (descEl) {
+        descEl.innerHTML = `Encontramos <strong>${docs.length}</strong> edición(es) de este libro en la Red Editorial Global disponibles para encargo (entrega en 24-48h).`;
+      }
+
+      let html = '';
+      docs.forEach(doc => {
+        const title = doc.title || 'Título disponible';
+        const author = doc.author_name ? doc.author_name.join(', ') : 'Autor de catálogo';
+        const year = doc.first_publish_year ? `1ª Edición: ${doc.first_publish_year}` : 'Edición contemporánea';
+        const coverUrl = doc.cover_i 
+          ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
+          : 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80';
+        
+        const estimatedPrice = 19.95;
+
+        html += `
+          <article class="external-book-card">
+            <div class="external-book-thumb-wrap">
+              <img src="${coverUrl}" 
+                   alt="Portada de ${escapeHtml(title)}" 
+                   class="external-book-thumb"
+                   onerror="this.src='https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80'">
+            </div>
+            <div class="external-book-info">
+              <span class="badge-ondemand">
+                <svg style="width: 12px; height: 12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Bajo Pedido (24/48h)
+              </span>
+              <h4 class="external-book-title" title="${escapeHtml(title)}">${escapeHtml(title)}</h4>
+              <p class="external-book-author">Por ${escapeHtml(author)}</p>
+              <div class="external-book-meta">${year} &bull; Red Editorial Moni Books</div>
+              <div class="external-book-footer">
+                <span class="external-book-price">${estimatedPrice.toFixed(2).replace('.', ',')} €</span>
+                <button class="btn-order-book" onclick="orderExternalBook('${escapeQuote(title)}', '${escapeQuote(author)}', '${coverUrl}', ${estimatedPrice})">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  Encargar libro
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+
+      gridEl.innerHTML = html;
+    }
+
+    // Fallback o formulario si no se encuentra en línea
+    function renderExternalFallback(query, gridEl, descEl) {
+      if (descEl) {
+        descEl.textContent = `Búsqueda manual de encargo para "${query}".`;
+      }
+      gridEl.innerHTML = `
+        <div class="custom-request-box" style="grid-column: 1 / -1;">
+          <h4>¿No encuentras la edición exacta? ¡Te la conseguimos!</h4>
+          <p>Indícanos el título de la obra o autor que buscas y nuestros libreros contactarán directamente a los distribuidores editoriales para conseguírtelo en 24-48h.</p>
+          <form class="custom-request-form" onsubmit="handleManualOrder(event, '${escapeQuote(query)}')">
+            <input type="text" id="manualBookTitle" value="${escapeHtml(query)}" placeholder="Título del libro" required>
+            <input type="email" id="manualUserEmail" placeholder="Tu correo electrónico" required>
+            <button type="submit" class="btn btn-cta" style="padding: 0.75rem 1.4rem;">
+              Solicitar a un librero
+            </button>
+          </form>
+        </div>
+      `;
+    }
+
+    // Encargar libro externo y añadir a la cesta
+    function orderExternalBook(title, author, cover, price) {
+      const bookItem = {
+        title: `${title} (Bajo Pedido)`,
+        author: author,
+        rawPrice: price,
+        price: `${price.toFixed(2).replace('.', ',')} €`,
+        cover: cover
+      };
+
+      addToCart(bookItem);
+      openCart();
+      showToast(`¡"${title}" añadido como pedido especial a tu cesta!`);
+    }
+
+    // Limpiar búsqueda externa y restaurar
+    function clearExternalSearch() {
+      const input = document.getElementById('liveSearchInput');
+      if (input) input.value = '';
+      bookCards.forEach(card => card.style.display = 'flex');
+      const externalContainer = document.getElementById('externalSearchResults');
+      if (externalContainer) externalContainer.style.display = 'none';
+    }
+
+    // Localizador dedicado (#localizador)
+    function handleDedicatedFinderSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('dedicatedFinderInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      searchDedicatedFinder(query);
+    }
+
+    function quickFinderSearch(title) {
+      const input = document.getElementById('dedicatedFinderInput');
+      if (input) {
+        input.value = title;
+        searchDedicatedFinder(title);
+      }
+    }
+
+    async function searchDedicatedFinder(query) {
+      const resultsDiv = document.getElementById('dedicatedFinderResults');
+      if (!resultsDiv) return;
+
+      resultsDiv.innerHTML = `
+        <div class="search-spinner">
+          <div class="spinner-ring"></div>
+          <p>Rastreando distribuidores y catálogo editorial global para "<strong>${escapeHtml(query)}</strong>"...</p>
+        </div>
+      `;
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6500);
+
+        const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=6`, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (!response.ok) throw new Error('Error de red');
+
+        const data = await response.json();
+        
+        if (!data.docs || data.docs.length === 0) {
+          renderDedicatedFallback(query, resultsDiv);
+          return;
+        }
+
+        let html = `
+          <div style="margin-bottom: 1.5rem; text-align: left; padding: 0.5rem 0;">
+            <span class="badge-accent" style="margin-bottom: 0.5rem;">Resultados en Red Editorial Externa</span>
+            <h4 style="font-size: 1.25rem; font-weight: 900; color: #FFFFFF;">Obras encontradas para "${escapeHtml(query)}"</h4>
+          </div>
+          <div class="external-books-grid">
+        `;
+
+        data.docs.forEach(doc => {
+          const title = doc.title || 'Título disponible';
+          const author = doc.author_name ? doc.author_name.join(', ') : 'Autor internacional';
+          const year = doc.first_publish_year ? `Año ${doc.first_publish_year}` : 'Edición vigente';
+          const coverUrl = doc.cover_i 
+            ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
+            : 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80';
+          const estimatedPrice = 19.95;
+
+          html += `
+            <article class="external-book-card">
+              <div class="external-book-thumb-wrap">
+                <img src="${coverUrl}" alt="Portada de ${escapeHtml(title)}" class="external-book-thumb" onerror="this.src='https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80'">
+              </div>
+              <div class="external-book-info">
+                <span class="badge-ondemand">Bajo Pedido (24/48h)</span>
+                <h4 class="external-book-title">${escapeHtml(title)}</h4>
+                <p class="external-book-author">Por ${escapeHtml(author)}</p>
+                <div class="external-book-meta">${year}</div>
+                <div class="external-book-footer">
+                  <span class="external-book-price">${estimatedPrice.toFixed(2).replace('.', ',')} €</span>
+                  <button class="btn-order-book" onclick="orderExternalBook('${escapeQuote(title)}', '${escapeQuote(author)}', '${coverUrl}', ${estimatedPrice})">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="9" cy="21" r="1"></circle>
+                      <circle cx="20" cy="21" r="1"></circle>
+                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    Encargar libro
+                  </button>
+                </div>
+              </div>
+            </article>
+          `;
+        });
+
+        html += '</div>';
+        resultsDiv.innerHTML = html;
+
+      } catch (err) {
+        renderDedicatedFallback(query, resultsDiv);
+      }
+    }
+
+    function renderDedicatedFallback(query, container) {
+      container.innerHTML = `
+        <div class="custom-request-box">
+          <h4>No hay ediciones digitales inmediatas, pero podemos conseguirlo</h4>
+          <p>Déjanos el título de "<strong>${escapeHtml(query)}</strong>" y tu email. Nuestros libreros lo solicitarán a distribuidores nacionales y te responderán en menos de 24 horas.</p>
+          <form class="custom-request-form" onsubmit="handleManualOrder(event, '${escapeQuote(query)}')">
+            <input type="text" value="${escapeHtml(query)}" placeholder="Título del libro" required>
+            <input type="email" placeholder="Tu correo electrónico" required>
+            <button type="submit" class="btn btn-cta" style="padding: 0.75rem 1.4rem;">
+              Encargar a Moni Books
+            </button>
+          </form>
+        </div>
+      `;
+    }
+
+    function handleManualOrder(e, title) {
+      e.preventDefault();
+      showToast(`¡Solicitud recibida! Te contactaremos con la disponibilidad de "${title}".`);
+      e.target.reset();
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function escapeQuote(str) {
+      if (!str) return '';
+      return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Modal de Vista Rápida
+    const modal = document.getElementById('quickViewModal');
+
+    function openQuickView(index) {
+      const book = booksData[index];
+      if (!book) return;
+
+      document.getElementById('modalCover').src = book.cover;
+      document.getElementById('modalCover').alt = book.title;
+      document.getElementById('modalTitle').textContent = book.title;
+      document.getElementById('modalAuthor').textContent = "Por " + book.author;
+      document.getElementById('modalCategory').textContent = book.category;
+      document.getElementById('modalRating').textContent = book.rating;
+      document.getElementById('modalSynopsis').textContent = book.synopsis;
+      document.getElementById('modalPages').textContent = book.pages;
+      document.getElementById('modalPrice').textContent = book.price;
+
+      // Asignar acción al botón de añadir dentro del modal
+      const addBtn = document.getElementById('modalAddCartBtn');
+      addBtn.onclick = () => {
+        addToCart(book.title, book.rawPrice);
+        closeQuickView();
+      };
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeQuickView() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeQuickViewOnBackdrop(event) {
+      if (event.target === modal) {
+        closeQuickView();
+      }
+    }
+
+    // Escape para cerrar modal o carrito
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('open')) closeQuickView();
+        const cartBackdrop = document.getElementById('cartDrawerBackdrop');
+        if (cartBackdrop && cartBackdrop.classList.contains('open')) closeCart();
+      }
+    });
+
+    // Formularios: Club Literario & Newsletter
+    function handleClubSubscribe(e) {
+      e.preventDefault();
+      showToast("¡Te has unido con éxito al Club de Lectores Moni Books!");
+      e.target.reset();
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      showToast("¡Gracias por suscribirte a la Gaceta Literaria!");
+      e.target.reset();
+    }
+
+    // Efecto sutil al hacer scroll en el Header
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 40) {
+        header.style.backgroundColor = 'rgba(5, 69, 97, 0.98)';
+        header.style.boxShadow = '0 6px 25px rgba(0,0,0,0.3)';
+      } else {
+        header.style.backgroundColor = 'rgba(8, 98, 136, 0.96)';
+        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+      }
+    });
+  </script>
+</body>
+</html>
